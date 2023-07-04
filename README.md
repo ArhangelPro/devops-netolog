@@ -9,7 +9,7 @@ commit 85024d3100126de36331c6982bfaac02cdab9e76 (tag: v0.12.23)
 **Сколько родителей у коммита b8d720? Напишите их хеши.**  
 `git show --no-abbrev-commit --format="%P" b8d720 ` 
 
->2
+2
 
 >56cd7859e05c36c06b56d013b55a252d0bb7e158  
 9ea88f22fc6269854151c571162c5bcf958bee2b  
