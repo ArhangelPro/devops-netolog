@@ -16,7 +16,7 @@ commit 85024d3100126de36331c6982bfaac02cdab9e76 (tag: v0.12.23)
 
 
 **Перечислите хеши и комментарии всех коммитов, которые были сделаны между тегами v0.12.23 и v0.12.24.**  
-`ggit log --pretty=format:"%H %s" v0.12.23..v0.12.24 `
+`git log --pretty=format:"%H %s" v0.12.23..v0.12.24 `
 
 >b14b74c4939dcab573326f4e3ee2a62e23e12f89 [Website] vmc provider links  
 3f235065b9347a758efadc92295b540ee0a5e26e Update CHANGELOG.md  
