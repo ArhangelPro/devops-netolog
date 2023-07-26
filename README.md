@@ -16,12 +16,11 @@ resource "docker_image" {
 
 **Выполните код. В качестве ответа приложите вывод команды docker ps**  
 
-![image](https://github.com/ArhangelPro/devops-netolog/assets/111104820/e79bf903-2a99-405b-a78c-d8f00cab7524)  
+![image](https://github.com/ArhangelPro/devops-netolog/assets/111104820/ebb32479-7ee9-4d84-93da-df4f44d9f7ff)
 
 **Замените имя docker-контейнера в блоке кода на hello_world. Не перепутайте имя контейнера и имя образа. Мы все еще продолжаем использовать name = "nginx:latest"! Выполните команду terraform apply -auto-approve. Объясните своими словами, в чем может быть опасность применения ключа -auto-approve ? В качестве ответа дополнительно приложите вывод команды docker ps**  
 
-![image](https://github.com/ArhangelPro/devops-netolog/assets/111104820/ebb32479-7ee9-4d84-93da-df4f44d9f7ff)
-![image](https://github.com/ArhangelPro/devops-netolog/assets/111104820/ef4db6ee-e65e-4388-ab52-1926eafaa17a)  
+![image](https://github.com/ArhangelPro/devops-netolog/assets/111104820/ef4db6ee-e65e-4388-ab52-1926eafaa17a)   
 
 
 Запуск команды terraform apply -auto-approve опасен бесконтрольным изменением инфораструктуры. При ошибке можно разрушить\изменить то, что не планировалось трогать. Как пример это задание. При изменении имени контейна, был создан новый кеонтейнер. 
