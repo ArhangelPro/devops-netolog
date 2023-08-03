@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "devops-netolog",
+			"path": "../../../devops-netolog"
+		}
+	],
+	"settings": {}
+}

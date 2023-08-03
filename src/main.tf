@@ -10,16 +10,17 @@ resource "yandex_vpc_subnet" "develop" {
 
 
 data "yandex_compute_image" "ubuntu" {
-  family = "ubuntu-2004-lts"
+  family = var.family
 }
-resource "yandex_compute_instance" "platform" {
-  name        = "netology-develop-platform-web"
-  platform_id = "standard-v1"
-  resources {
-    cores         = 2
-    memory        = 1
-    core_fraction = 5
-  }
+resource "yandex_compute_instance" "platform" {  
+  name        = local.web
+  platform_id = var.resource.vm_web_platform_id
+    resources {
+      cores         = var.vms_resources["vm_web"]["cores"]
+      memory        = var.vms_resources["vm_web"]["memory"]
+      core_fraction = var.vms_resources["vm_web"]["core_fraction"]
+    }
+
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu.image_id
@@ -34,8 +35,37 @@ resource "yandex_compute_instance" "platform" {
   }
 
   metadata = {
-    serial-port-enable = 1
-    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
+    serial-port-enable = local.meta[1]
+    ssh-keys           = local.meta[0]
+  }
+
+}
+
+resource "yandex_compute_instance" "vm_db_platform" {  
+
+  name        = local.db
+  platform_id = var.resource.vm_db_platform_id
+    resources {
+      cores         = var.vms_resources["vm_db"]["cores"]
+      memory        = var.vms_resources["vm_db"]["memory"]
+      core_fraction = var.vms_resources["vm_db"]["core_fraction"]
+    }
+boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  scheduling_policy {
+    preemptible = true
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+    nat       = true
+  }
+
+  metadata = {
+    serial-port-enable = local.meta[1]
+    ssh-keys           = local.meta[0]
   }
 
 }

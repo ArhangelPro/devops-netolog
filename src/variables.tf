@@ -39,3 +39,10 @@ variable "vms_ssh_root_key" {
   default     = "<your_ssh_ed25519_key>"
   description = "ssh-keygen -t ed25519"
 }
+
+###yandex_compute_image vars
+variable "family" {
+  type        = string
+  default     = "ubuntu-2004-lts"
+}
+
