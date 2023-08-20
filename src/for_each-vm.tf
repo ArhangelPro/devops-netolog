@@ -2,20 +2,20 @@ resource "yandex_compute_instance" "databases" {
     depends_on = [
    yandex_compute_instance.web
   ]
-    for_each = toset(["0", "1"])
-    name        = var.vms_resources[each.key].vm_name
-    platform_id = "standard-v1"
+    for_each = { for key, value in var.vms_resources : key => value }
+    name        = each.value["vm_name"]
+    platform_id = each.value["platform_id"]
     resources {
-        cores         = var.vms_resources[each.key].cpu
-        memory        = var.vms_resources[each.key].ram
-        core_fraction = var.vms_resources[each.key].core_fraction
+        cores = each.value["cpu"]
+        memory = each.value["ram"]
+        core_fraction = each.value["core_fraction"]
         
 
     }
 
     boot_disk {
         initialize_params {
-            size = var.vms_resources[each.key].disk
+            size = each.value["disk"]
             image_id = data.yandex_compute_image.ubuntu.image_id
     }
   }

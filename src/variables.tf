@@ -50,7 +50,8 @@ variable "security_group_ids" {
 
 variable "vms_resources" {
   type = list(object({ 
-    vm_name=string, 
+    vm_name=string,
+    platform_id = string, 
     cpu=number, 
     ram=number, 
     disk=number,
@@ -58,6 +59,7 @@ variable "vms_resources" {
     default = [
       {
       vm_name = "main"
+      platform_id = "standard-v1"
       cpu     = 2
       ram     = 1
       disk    = 30
@@ -65,6 +67,7 @@ variable "vms_resources" {
     },
     {
       vm_name = "replica"
+      platform_id = "standard-v1"
       cpu     = 4
       ram     = 2
       disk    = 40
