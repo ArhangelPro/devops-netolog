@@ -31,63 +31,31 @@ variable "vpc_name" {
   description = "VPC network&subnet name"
 }
 
-###yandex_compute_image vars
-variable "family" {
-  type        = string
-  default     = "ubuntu-2004-lts"
-}
+###common vars
 
 variable "vms_ssh_root_key" {
   type        = string
-  default     = "<your_ssh_ed25519_key>"
+  default     = "your_ssh_ed25519_key"
   description = "ssh-keygen -t ed25519"
 }
 
-variable "security_group_ids" {
+###example vm_web var
+variable "vm_web_name" {
   type        = string
-  description = "https://cloud.yandex.ru/docs/vpc/operations/security-group-create"
+  default     = "netology-develop-platform-web"
+  description = "example vm_web_ prefix"
 }
 
-variable "vms_resources" {
-  type = list(object({ 
-    vm_name=string,
-    platform_id = string, 
-    cpu=number, 
-    ram=number, 
-    disk=number,
-    core_fraction=number}))
-    default = [
-      {
-      vm_name = "main"
-      platform_id = "standard-v1"
-      cpu     = 2
-      ram     = 1
-      disk    = 30
-      core_fraction = 5
-    },
-    {
-      vm_name = "replica"
-      platform_id = "standard-v1"
-      cpu     = 4
-      ram     = 2
-      disk    = 40
-      core_fraction = 5
-    }
-    ]
+###example vm_db var
+variable "vm_db_name" {
+  type        = string
+  default     = "netology-develop-platform-db"
+  description = "example vm_db_ prefix"
 }
 
-variable "hosts_ansible" {
-  type = list(map(string))
-  default     = [
-  {
-    group_name = "webservers"
-      instance =  "yandex_compute_instance.web"},
-    {
-    group_name = "databases"
-      instance =  "yandex_compute_instance.databases"},
-    {
-    group_name = "storage"
-      instance =  "yandex_compute_instance.storage"
-  }
- ]
+variable "public_key" {
+ description = "Path to public SSH key file"
+  type        = list(string)
+  default     = ["~/.ssh/id_ed25519.pub"] 
 }
+

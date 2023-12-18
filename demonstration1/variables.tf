@@ -32,6 +32,7 @@ variable "vpc_name" {
 }
 
 variable "public_key" {
-  type    = string
-  default = ""
+ description = "Path to public SSH key file"
+  type        = list(string)
+  default     = ["~/.ssh/id_ed25519.pub"] 
 }
